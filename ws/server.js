@@ -1,5 +1,4 @@
-/* Simplified stock exchange made with Socket.IO pub/sub */
-const server_io = require("socket.io")(3000);
+const WebSocket = require("ws");
 
 /* We measure transactions per second server side */
 let transactionsPerSecond = 0;
@@ -13,15 +12,19 @@ let shares = {
   NVDA: 183.03,
 };
 
-/* Define the server */
-server_io.on("connection", function (socket) {
-  socket.on("message", (message) => {
-    /* Parse JSON and perform the action */
+const wss = new WebSocket.Server({
+  port: 8888,
+});
+
+wss.on("connection", function connection(ws) {
+  ws.on("message", function incoming(message) {
     let json = JSON.parse(message);
     switch (json.action) {
       case "sub": {
         /* Subscribe to the share's value stream */
-        socket.join("shares/" + json.share + "/value");
+        ws.send(JSON.stringify({
+            channel: "shares/" + json.share + "/value",
+          }));
         break;
       }
       case "buy": {
@@ -31,16 +34,24 @@ server_io.on("connection", function (socket) {
         shares[json.share] *= 1.001;
 
         /* Value of share has changed, update subscribers */
-        server_io.in("shares/" + json.share + "/value").send(JSON.stringify({ [json.share]: shares[json.share] }));
+        ws.send(
+          JSON.stringify({
+            channel: "shares/" + json.share + "/value",
+            [json.share]: shares[json.share],
+          })
+        );
         break;
       }
       case "sell": {
         transactionsPerSecond++;
-
         /* For simplicity, shares decrease 0.1% with every sale */
         shares[json.share] *= 0.999;
-
-        server_io.in("shares/" + json.share + "/value").send(JSON.stringify({ [json.share]: shares[json.share] }));
+        ws.send(
+          JSON.stringify({
+            channel: "shares/" + json.share + "/value",
+            [json.share]: shares[json.share],
+          })
+        );
         break;
       }
     }
@@ -56,4 +67,4 @@ setInterval(() => {
   console.log("");
   transactionsPerSecond = 0;
   last = Date.now();
-}, 1000);
+}, 10000);

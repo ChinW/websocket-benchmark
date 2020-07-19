@@ -1,26 +1,133 @@
-# Simplified stock exchange as pubsub benchmark
+# Test result
 
-This repo implements a simplified stock exchange service using pub/sub support found in Socket.IO and uWebSockets.js. The purpose is to showcase performance differences in the two projects given a real-world example under stressful conditions.
+### ws
 
-The benchmark is simple; two versions are made using virtually identical features and number of lines of code. One made with uWebSockets.js, one made with Socket.IO. Source code is available under respective folder. Feel free to PR other implementations.
+**able to run 4 instances!!**
 
-<div align="center">
+```
+# 1 instance
+Transactions per second: 13886.611338866114, here are the curret shares:
+{
+  NFLX: 437.1223171406717,
+  TSLA: 456.961027490464,
+  AMZN: 4261.093117452719,
+  GOOG: 257.07999752338515,
+  NVDA: 129.07510307757653
+}
 
-<img src="TransactionsPerSecond.png"/>
+node cpu: 50%
 
-</div>
+# 4 instances
 
-*Note: uWebSockets.js cannot be fully stressed with the WebSocket client "websockets/ws" in use here, so results reported are not ideal. However the difference is grand in any case, so let's not get caught up in details.*
+Transactions per second: 71886.0227954409, here are the curret shares:
+{
+  NFLX: 182.87433194656498,
+  TSLA: 1022.9054384145393,
+  AMZN: 560.8868971120006,
+  GOOG: 39.01386533078053,
+  NVDA: 127.94287310162221
+}
 
-## Details
+Transactions per second: 70142.47150569885, here are the curret shares:
+{
+  NFLX: 224.0494447452168,
+  TSLA: 930.0257595240352,
+  AMZN: 390.7555392111635,
+  GOOG: 119.73092859061563,
+  NVDA: 211.4590822967352
+}
 
-#### The server
-Holds a set of 5 shares with their respective value. If a share is bought, its value increases by 0.1%. Likewise if a share is sold, its value decreases by 0.1%. Every share is its own topic (or so called "room"); when a share value changes its value is published to all subscribers of that topic.
+Transactions per second: 64547.43576926922, here are the curret shares:
+{
+  NFLX: 199.38162742102753,
+  TSLA: 1243.7519691091143,
+  AMZN: 219.98226822017372,
+  GOOG: 86.10292130285285,
+  NVDA: 212.1739601913941
+}
 
-#### The client (passive watchers and active traders)
-Establishes 500 connections, of which 50 are active traders and 450 are passive watchers. Every connection is interested in only one share, and will only subscribe to, and buy/sell that one share.
+node cpu: 70 - 100%
+```
 
-Active traders buy/sell their share every 1ms, driving change in the market. Passive watchers do not buy/sell but only watches the value of its share.
+### socket.io
 
-#### The metrics
-Performance is measured in transactions per second, server side. More detailed metrics could be added, however the difference in performance is so grand that it makes little sense to care about the details here. We just want you to get the big picture, and back it up with scientific measures, open source for anyone to confirm or deny.
+**die after 20s**
+
+```
+Transactions per second: 3160.2962255136167, here are the curret shares:
+{
+  NFLX: 291.1087571528243,
+  TSLA: 244.74,
+  AMZN: 1788.6559198253308,
+  GOOG: 1187.1239999812924,
+  NVDA: 174.6441644522588
+}
+
+Transactions per second: 2765.8108500145054, here are the curret shares:
+{
+  NFLX: 266.70212617623343,
+  TSLA: 244.74,
+  AMZN: 1886.6456659331966,
+  GOOG: 1463.9000516492076,
+  NVDA: 169.91079195983414
+}
+
+Transactions per second: 4459.919839679359, here are the curret shares:
+{
+  NFLX: 279.7711420327037,
+  TSLA: 244.74,
+  AMZN: 1886.6456659331966,
+  GOOG: 1458.7379458036958,
+  NVDA: 172.04241585307955
+}
+
+node cpu: >120%
+```
+
+## uwebsocket
+
+```
+# 1 instance
+
+Transactions per second: 7340, here are the curret shares:
+{
+  NFLX: 187.94536025799889,
+  TSLA: 220.0134946526879,
+  AMZN: 1749.0660218384803,
+  GOOG: 1688.5973105484613,
+  NVDA: 156.66073122908176
+}
+
+node cpu: 100%
+
+# 2 instances
+Transactions per second: 10720, here are the curret shares:
+{
+  NFLX: 138.2916936187233,
+  TSLA: 216.42452533864503,
+  AMZN: 1415.6048107890945,
+  GOOG: 1810.855182392591,
+  NVDA: 199.2807423671192
+}
+
+Transactions per second: 8712.28771228771, here are the curret shares:
+{
+  NFLX: 134.77377978096976,
+  TSLA: 211.10800308317812,
+  AMZN: 1506.3377720439512,
+  GOOG: 1903.744481874943,
+  NVDA: 189.77621833208994
+}
+
+Transactions per second: 7911.08891108891, here are the curret shares:
+{
+  NFLX: 146.33875807939432,
+  TSLA: 203.88943339334205,
+  AMZN: 1549.454444575022,
+  GOOG: 1954.0658149383273,
+  NVDA: 179.2964463232948
+}
+
+node cpu: 100%
+
+```

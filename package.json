@@ -1,0 +1,24 @@
+{
+  "name": "pubsub-benchmark",
+  "version": "1.0.0",
+  "description": "This repo implements a simplified stock exchange service using pub/sub support found in Socket.IO and uWebSockets.js. The purpose is to showcase performance differences in the two projects given a real-world example under stressful conditions.",
+  "main": "uWebSockets.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uNetworking/pubsub-benchmark.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uNetworking/pubsub-benchmark/issues"
+  },
+  "homepage": "https://github.com/uNetworking/pubsub-benchmark#readme",
+  "dependencies": {
+    "socket.io": "^2.3.0",
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v18.3.0",
+    "ws": "^7.3.1"
+  }
+}
