@@ -131,3 +131,45 @@ Transactions per second: 7911.08891108891, here are the curret shares:
 node cpu: 100%
 
 ```
+
+# Vert.X
+
+1 Server, 8 Clients, no connection drop
+
+```
+// 1 instance 
+transactions: 1807 req/s
+transactions: 2559 req/s
+transactions: 2562 req/s
+transactions: 2564 req/s
+transactions: 2561 req/s
+transactions: 2572 req/s
+
+// 8 instances
+transactions: 13902 req/s
+transactions: 12920 req/s
+transactions: 20967 req/s
+transactions: 12504 req/s
+transactions: 10136 req/s
+transactions: 18372 req/s
+transactions: 19506 req/s
+transactions: 22219 req/s
+transactions: 21095 req/s
+transactions: 18889 req/s
+transactions: 20714 req/s
+transactions: 19929 req/s
+transactions: 20336 req/s
+transactions: 20090 req/s
+transactions: 11139 req/s
+transactions: 10888 req/s
+transactions: 22506 req/s
+transactions: 30698 req/s
+transactions: 53726 req/s
+transactions: 21483 req/s
+transactions: 21422 req/s
+transactions: 21746 req/s
+transactions: 21190 req/s
+transactions: 21425 req/s
+transactions: 12889 req/s
+transactions: 22996 req/s
+```
