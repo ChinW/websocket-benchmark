@@ -14,8 +14,11 @@ Each termnial is aiming to run 200 client connections.
 
 **able to run 4 termnials!!**
 
+#### 1 terminal
+
+node cpu: 50%
+
 ```
-# 1 terminal
 Transactions per second: 13886.611338866114, here are the curret shares:
 {
   NFLX: 437.1223171406717,
@@ -24,11 +27,11 @@ Transactions per second: 13886.611338866114, here are the curret shares:
   GOOG: 257.07999752338515,
   NVDA: 129.07510307757653
 }
+```
 
-node cpu: 50%
-
-# 4 terminals
-
+#### 4 terminals
+node cpu: 70 - 100%
+```
 Transactions per second: 71886.0227954409, here are the curret shares:
 {
   NFLX: 182.87433194656498,
@@ -55,8 +58,6 @@ Transactions per second: 64547.43576926922, here are the curret shares:
   GOOG: 86.10292130285285,
   NVDA: 212.1739601913941
 }
-
-node cpu: 70 - 100%
 ```
 
 ### socket.io
@@ -94,11 +95,13 @@ Transactions per second: 4459.919839679359, here are the curret shares:
 node cpu: >120%
 ```
 
-## uwebsocket
+### uwebsocket
+
+#### 1 terminal
+
+node cpu: 100%
 
 ```
-# 1 terminal
-
 Transactions per second: 7340, here are the curret shares:
 {
   NFLX: 187.94536025799889,
@@ -107,10 +110,12 @@ Transactions per second: 7340, here are the curret shares:
   GOOG: 1688.5973105484613,
   NVDA: 156.66073122908176
 }
+```
 
+#### 2 terminals
 node cpu: 100%
 
-# 2 terminals
+```
 Transactions per second: 10720, here are the curret shares:
 {
   NFLX: 138.2916936187233,
@@ -137,12 +142,9 @@ Transactions per second: 7911.08891108891, here are the curret shares:
   GOOG: 1954.0658149383273,
   NVDA: 179.2964463232948
 }
-
-node cpu: 100%
-
 ```
 
-# Vert.X
+### Vert.X
 
 **Each terminal can only open up to 190 connections**
 
@@ -161,7 +163,7 @@ We did not expect any client to disconnect, exiting!
 102 connected
 ```
 
-## 1 terminal 
+#### 1 terminal 
 
 ```
 transactions: 15499 req/s
@@ -171,7 +173,7 @@ transactions: 15798 req/s
 transactions: 14953 req/s
 ```
 
-## 2 instnaces
+#### 2 instnaces
 
 Make my mac died every time...
 
