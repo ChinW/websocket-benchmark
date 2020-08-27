@@ -1,11 +1,21 @@
 # Test result
 
+System:
+```
+MacBook Pro (13-inch, 2020, Four Thunderbolt 3 ports)
+2 GHz Quad-Core Intel Core i5
+16 GB 3733 MHz LPDDR4X
+Intel Iris Plus Graphics 1536 MB
+```
+
+Each termnial is aiming to run 200 client connections.
+
 ### ws
 
-**able to run 4 instances!!**
+**able to run 4 termnials!!**
 
 ```
-# 1 instance
+# 1 terminal
 Transactions per second: 13886.611338866114, here are the curret shares:
 {
   NFLX: 437.1223171406717,
@@ -17,7 +27,7 @@ Transactions per second: 13886.611338866114, here are the curret shares:
 
 node cpu: 50%
 
-# 4 instances
+# 4 terminals
 
 Transactions per second: 71886.0227954409, here are the curret shares:
 {
@@ -87,7 +97,7 @@ node cpu: >120%
 ## uwebsocket
 
 ```
-# 1 instance
+# 1 terminal
 
 Transactions per second: 7340, here are the curret shares:
 {
@@ -100,7 +110,7 @@ Transactions per second: 7340, here are the curret shares:
 
 node cpu: 100%
 
-# 2 instances
+# 2 terminals
 Transactions per second: 10720, here are the curret shares:
 {
   NFLX: 138.2916936187233,
@@ -134,42 +144,55 @@ node cpu: 100%
 
 # Vert.X
 
-1 Server, 8 Clients, no connection drop
+**Each terminal can only open up to 190 connections**
 
 ```
-// 1 instance 
-transactions: 1807 req/s
-transactions: 2559 req/s
-transactions: 2562 req/s
-transactions: 2564 req/s
-transactions: 2561 req/s
-transactions: 2572 req/s
+//terminal #1:
+187 started
+188 started
+189 started
+190 started
+191 started
+191 failed to conenct
+We did not expect any client to disconnect, exiting!
+90 connected
+67 connected
+47 connected
+102 connected
+```
 
-// 8 instances
-transactions: 13902 req/s
-transactions: 12920 req/s
-transactions: 20967 req/s
-transactions: 12504 req/s
-transactions: 10136 req/s
-transactions: 18372 req/s
-transactions: 19506 req/s
-transactions: 22219 req/s
-transactions: 21095 req/s
-transactions: 18889 req/s
-transactions: 20714 req/s
-transactions: 19929 req/s
-transactions: 20336 req/s
-transactions: 20090 req/s
-transactions: 11139 req/s
-transactions: 10888 req/s
-transactions: 22506 req/s
-transactions: 30698 req/s
-transactions: 53726 req/s
-transactions: 21483 req/s
-transactions: 21422 req/s
-transactions: 21746 req/s
-transactions: 21190 req/s
-transactions: 21425 req/s
-transactions: 12889 req/s
-transactions: 22996 req/s
+## 1 terminal 
+
+```
+transactions: 15499 req/s
+transactions: 15097 req/s
+transactions: 14833 req/s
+transactions: 15798 req/s
+transactions: 14953 req/s
+```
+
+## 2 instnaces
+
+Make my mac died every time...
+
+```
+transactions: 16213 req/s
+transactions: 15717 req/s
+transactions: 15582 req/s
+transactions: 10231 req/s
+transactions: 38092 req/s
+transactions: 13396 req/s
+transactions: 0 req/s
+transactions: 0 req/s
+```
+
+```
+// from terminal log
+java.lang.NoClassDefFoundError: Could not initialize class java.time.zone.ZoneRulesProvider
+	at java.base/java.time.ZoneRegion.ofId(ZoneRegion.java:120)
+	at java.base/java.time.ZoneId.of(ZoneId.java:408)
+	....
+Exception in thread "main" java.lang.IllegalStateException: failed to create a child event loop
+	at io.netty.util.concurrent.MultithreadEventExecutorGroup.<init>(MultithreadEventExecutorGroup.java:88)
+	at io.netty.util.concurrent.MultithreadEventExecutorGroup.<init>(MultithreadEventExecutorGroup.java:58)
 ```

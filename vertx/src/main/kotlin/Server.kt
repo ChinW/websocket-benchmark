@@ -26,7 +26,6 @@ class Server : AbstractVerticle() {
                     ws.handler { data: Buffer? ->
                         run {
                             val payload = Json.decodeFromString<Payload>(data.toString())
-//                            println(payload)
                             when(payload.action) {
                                 "sub" -> {
                                     ws.writeTextMessage(Json.encodeToString(Payload(
@@ -72,7 +71,7 @@ fun main(args: Array<String>) =  runBlocking<Unit>  {
     Vertx.vertx().deployVerticle(Server())
     launch {
         while(true) {
-            println("transactions: ${transPerSecond/5} req/s")
+            println("transactions: ${transPerSecond/2} req/s")
             transPerSecond = 0
             delay(2000)
         }
