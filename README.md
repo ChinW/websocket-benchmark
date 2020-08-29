@@ -80,32 +80,23 @@ clients: 1581, tx/second: 92839.09958833319  // dies here
 
 ### socket.io
 
-**die after 20s**
-node cpu: >120%
+**node cpu: >120%, die after 20s**
 
 ```
-Transactions per second: 3160.2962255136167
-Transactions per second: 2765.8108500145054
-Transactions per second: 4459.919839679359
+clients: 200, tx/second: 3160.2962255136167
+clients: 200, tx/second: 2765.8108500145054
+clients: 200, tx/second: 4459.919839679359
 ```
 
 ### uwebsocket
 
-#### 1 terminal
-
 node cpu: 100%
 
 ```
-Transactions per second: 7340
-```
-
-#### 2 terminals
-node cpu: 100%
-
-```
-Transactions per second: 10720
-Transactions per second: 8712.28771228771
-Transactions per second: 7911.08891108891
+clients: 200, tx/second: 7340
+clients: 400, tx/second: 10720
+clients: 400, tx/second: 8712.28771228771
+clients: 400, tx/second: 7911.08891108891
 ```
 
 ### Vert.X v3.9.2
