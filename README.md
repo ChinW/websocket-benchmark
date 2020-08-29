@@ -39,7 +39,7 @@ clients: 1200, tx/second: 103316.86626746507
 clients: 1200, tx/second: 99527.65321375187
 clients: 1200, tx/second: 100461.95922426652
 clients: 1200, tx/second: 93544.41117764471
-clients: 1200, tx/second: 100236.5165759525
+clients: 1200, tx/second: 100236.5165759525 // start to add more clients to 1600
 clients: 1202, tx/second: 93156.92153923039
 clients: 1222, tx/second: 95659
 clients: 1237, tx/second: 93074.8502994012
@@ -151,7 +151,7 @@ clients: 1000, tx/second: 62859.64035964036
 clients: 1000, tx/second: 85215.60780390195
 clients: 1000, tx/second: 64566.0
 clients: 1000, tx/second: 56672.32767232767
-clients: 1000, tx/second: 70428.8567149276
+clients: 1000, tx/second: 70428.8567149276 // add to 1200 clients
 clients: 1200, tx/second: 71587.61857214179
 clients: 1200, tx/second: 79889.66550174737
 clients: 1200, tx/second: 91149.0
@@ -168,6 +168,5 @@ clients: 1200, tx/second: 0.0
 clients: 1200, tx/second: 0.0
 clients: 1200, tx/second: 0.0
 clients: 1200, tx/second: 0.0 // my computer dies
-
 ```
 
