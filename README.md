@@ -1,6 +1,9 @@
-# Test result
+# Test scope and environment
 
-System:
+- Test for:
+    - NodeJS: ws, socket.io, uwebsocket
+    - Java: VertX (which uses Netty)
+- System:
 ```
 MacBook Pro (13-inch, 2020, Four Thunderbolt 3 ports)
 2 GHz Quad-Core Intel Core i5
