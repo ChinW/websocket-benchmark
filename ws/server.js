@@ -12,18 +12,21 @@ let shares = {
 };
 
 const wss = new WebSocket.Server({
-  port: 8888,
+  port: 8080,
+  perMessageDeflate: false
 });
 
-wss.on("connection", function connection(ws) {
+wss.on("connection", (ws) => {
   clientCount++;
-  ws.on("message", function incoming(message) {
+  ws.on("message", (message) => {
     let json = JSON.parse(message);
     switch (json.action) {
       case "sub": {
-        ws.send(JSON.stringify({
+        ws.send(
+          JSON.stringify({
             channel: "shares/" + json.share + "/value",
-          }));
+          })
+        );
         break;
       }
       case "buy": {

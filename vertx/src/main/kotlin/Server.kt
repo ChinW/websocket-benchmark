@@ -30,32 +30,29 @@ class Server : AbstractVerticle() {
                             val payload = Json.decodeFromString<Payload>(data.toString())
                             when(payload.action) {
                                 "sub" -> {
-                                    ws.writeTextMessage(Json.encodeToString(Payload(
-                                        "shares/${payload.shareName}/value",
-                                        "return"
-                                    )))
+                                    ws.writeTextMessage(Json.encodeToString(Payload("return")))
                                 }
                                 "buy" -> {
-                                    val share = shares.get(payload.shareName)
+                                    val share = shares.get(payload.share)
                                     if ( share != null) {
-                                        shares.put(payload.shareName, share * 1.001)
+                                        shares.put(payload.share, share * 1.001)
                                     }
                                     ws.writeTextMessage(Json.encodeToString(Payload(
-                                        "shares/${payload.shareName}/value",
                                         "return",
-                                        price = shares.get(payload.shareName)!!
+                                        "shares/${payload.share}/value",
+                                        price = shares.get(payload.share)!!
                                     )))
                                     transPerSecond ++
                                 }
                                 "sell" -> {
-                                    val share = shares.get(payload.shareName)
+                                    val share = shares.get(payload.share)
                                     if ( share != null) {
-                                        shares.put(payload.shareName, share * 0.999)
+                                        shares.put(payload.share, share * 0.999)
                                     }
                                     ws.writeTextMessage(Json.encodeToString(Payload(
-                                        "shares/${payload.shareName}/value",
                                         "return",
-                                        price = shares.get(payload.shareName)!!
+                                        "shares/${payload.share}/value",
+                                        price = shares.get(payload.share)!!
                                     )))
                                     transPerSecond ++
                                 }

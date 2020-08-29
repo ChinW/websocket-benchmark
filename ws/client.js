@@ -2,7 +2,7 @@ const WebSocket = require("ws");
 
 const numClients = 200;
 const tradersFraction = 0.1;
-
+let rps = 0;
 let shares = ["NFLX", "TSLA", "AMZN", "GOOG", "NVDA"];
 
 function establishConnections(remainingClients) {
@@ -10,25 +10,20 @@ function establishConnections(remainingClients) {
     return;
   }
 
-  /* Current value of our share */
   let value;
 
-  const ws = new WebSocket("ws://localhost:8888");
+  const ws = new WebSocket("ws://localhost:8080");
   ws.on("open", function open() {
     let shareOfInterest = shares[parseInt(Math.random() * shares.length)];
-
     ws.send(JSON.stringify({ action: "sub", share: shareOfInterest }));
-
-    /* Is this client going to be an active trader, or a passive watcher? */
     if (remainingClients <= numClients * tradersFraction) {
-      /* If so, then buy and sell shares every 1ms, driving change in the stock market */
       setInterval(() => {
-        /* For simplicity we just randomly buy/sell */
         if (Math.random() < 0.5) {
           ws.send(JSON.stringify({ action: "buy", share: shareOfInterest }));
         } else {
           ws.send(JSON.stringify({ action: "sell", share: shareOfInterest }));
         }
+        rps++;
       }, 1);
     }
 
@@ -37,8 +32,6 @@ function establishConnections(remainingClients) {
 
   ws.on("message", function incoming(data) {
     let json = JSON.parse(data);
-
-    /* Keep track of our one share value (even though current strategy doesn't care for value) */
     for (let share in json) {
       value = json[share];
     }
@@ -51,3 +44,11 @@ function establishConnections(remainingClients) {
 }
 
 establishConnections(numClients);
+
+let last = Date.now();
+setInterval(() => {
+  rps /= (Date.now() - last) * 0.001;
+  console.log(`sent req/s: ${rps}`);
+  rps = 0;
+  last = Date.now();
+}, 2000);

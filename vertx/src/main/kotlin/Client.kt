@@ -9,10 +9,10 @@ import kotlin.system.exitProcess
 
 @Serializable
 data class Payload(
-    var channel: String,
     var action: String,
-    var shareName: String = "",
-    var price: Double = 0.0
+    var share: String = "",
+    var price: Double = 0.0,
+    var channel: String = ""
 )
 
 var numClients = 200;
@@ -38,7 +38,7 @@ class Client(var clientIndex: Int) : AbstractVerticle() {
                         val payload = Json.decodeFromString<Payload>(data.toString())
                         value = payload.price
                     }
-                    ws.writeTextMessage(Json.encodeToString(Payload("test", "sub")))
+                    ws.writeTextMessage(Json.encodeToString(Payload("sub")))
                     ws.exceptionHandler {
                         println("We did not expect any client to disconnect, exiting!")
                         exitProcess(1)
@@ -61,9 +61,8 @@ class Client(var clientIndex: Int) : AbstractVerticle() {
                     this@Client.ws!!.writeTextMessage(
                         Json.encodeToString(
                             Payload(
-                                "test",
                                 "sell",
-                                shareName = shareOfInterest
+                                share = shareOfInterest
                             )
                         )
                     )
@@ -71,9 +70,8 @@ class Client(var clientIndex: Int) : AbstractVerticle() {
                     this@Client.ws!!.writeTextMessage(
                         Json.encodeToString(
                             Payload(
-                                "test",
                                 "buy",
-                                shareName = shareOfInterest
+                                share = shareOfInterest
                             )
                         )
                     )
