@@ -29,7 +29,7 @@ class Client(var clientIndex: Int) : AbstractVerticle() {
         val client = vertx.createHttpClient()
         this@Client.shareOfInterest = shares[Math.random().toInt() * shares.size]
         client.webSocket(8080, "localhost", "/") { websocket ->
-             runBlocking {
+            run {
                 if (websocket.succeeded()) {
                     val ws = websocket.result()
                     println("$clientIndex connected")
@@ -43,62 +43,58 @@ class Client(var clientIndex: Int) : AbstractVerticle() {
                         println("We did not expect any client to disconnect, exiting!")
                         exitProcess(1)
                     }
-                    this@Client.sendMsg()
+                    GlobalScope.launch {
+                        this@Client.sendMsg()
+                    }
                 } else {
                     println("$clientIndex failed to conenct")
-//                    println("We did not expect any client to disconnect, exiting!")
-//                    exitProcess(1)
                 }
             }
         }
     }
 
-    suspend fun sendMsg() = coroutineScope {
+    suspend fun sendMsg() {
         println("$clientIndex in sendMsg")
         if (clientIndex <= numClients * tradersFraction) {
-            async {
-                while (true) {
-                    if (Math.random() < 0.5) {
-                        this@Client.ws!!.writeTextMessage(
-                            Json.encodeToString(
-                                Payload(
-                                    "test",
-                                    "sell",
-                                    shareName = shareOfInterest
-                                )
+            while (true) {
+                if (Math.random() < 0.5) {
+                    this@Client.ws!!.writeTextMessage(
+                        Json.encodeToString(
+                            Payload(
+                                "test",
+                                "sell",
+                                shareName = shareOfInterest
                             )
                         )
-                    } else {
-                        this@Client.ws!!.writeTextMessage(
-                            Json.encodeToString(
-                                Payload(
-                                    "test",
-                                    "buy",
-                                    shareName = shareOfInterest
-                                )
+                    )
+                } else {
+                    this@Client.ws!!.writeTextMessage(
+                        Json.encodeToString(
+                            Payload(
+                                "test",
+                                "buy",
+                                shareName = shareOfInterest
                             )
                         )
-                    }
-                    delay(1)
+                    )
                 }
+                delay(1)
             }
         }
     }
 }
 
-fun createClient(remainingClients: Int): Client {
+fun createClient(remainingClients: Int, vertx: Vertx): Client {
     val client = Client(remainingClients)
-    Vertx.vertx().deployVerticle(client)
+    vertx.deployVerticle(client)
     return client
 }
 
-
-fun main(args: Array<String>) = runBlocking {
-    var clientList: MutableList<Client> = mutableListOf()
+fun main(args: Array<String>) = run {
+    val clientList: MutableList<Client> = mutableListOf()
+    val vertx = Vertx.vertx()
     for (i in 0..199) {
-        launch {
-            var client = createClient(i.toInt())
-            clientList.add(i, client)
-        }
+        val client = createClient(i.toInt(), vertx)
+        clientList.add(i, client)
     }
 }

@@ -2,6 +2,7 @@ const WebSocket = require("ws");
 
 /* We measure transactions per second server side */
 let transactionsPerSecond = 0;
+let clientCount = 0;
 
 /* Share valuations */
 let shares = {
@@ -17,6 +18,7 @@ const wss = new WebSocket.Server({
 });
 
 wss.on("connection", function connection(ws) {
+  clientCount++;
   ws.on("message", function incoming(message) {
     let json = JSON.parse(message);
     switch (json.action) {
@@ -62,9 +64,7 @@ wss.on("connection", function connection(ws) {
 let last = Date.now();
 setInterval(() => {
   transactionsPerSecond /= (Date.now() - last) * 0.001;
-  console.log("Transactions per second: " + transactionsPerSecond + ", here are the curret shares:");
-  console.log(shares);
-  console.log("");
+  console.log(`clients: ${clientCount}, tx/second: ${transactionsPerSecond}`);
   transactionsPerSecond = 0;
   last = Date.now();
-}, 10000);
+}, 2000);

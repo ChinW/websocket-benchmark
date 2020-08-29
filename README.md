@@ -7,92 +7,83 @@ MacBook Pro (13-inch, 2020, Four Thunderbolt 3 ports)
 16 GB 3733 MHz LPDDR4X
 Intel Iris Plus Graphics 1536 MB
 ```
-
-Each termnial is aiming to run 200 client connections.
+- 10% clients are sending req per 1ms, i.e. if there are 200 clients connected, 20 clients are sending reqs per ms
+- log per 2 seconds
 
 ### ws
 
-**able to run 4 termnials!!**
-
-#### 1 terminal
-
-node cpu: 50%
+client nodes cpu: ~30%
 
 ```
-Transactions per second: 13886.611338866114, here are the curret shares:
-{
-  NFLX: 437.1223171406717,
-  TSLA: 456.961027490464,
-  AMZN: 4261.093117452719,
-  GOOG: 257.07999752338515,
-  NVDA: 129.07510307757653
-}
-```
-
-#### 4 terminals
-node cpu: 70 - 100%
-```
-Transactions per second: 71886.0227954409, here are the curret shares:
-{
-  NFLX: 182.87433194656498,
-  TSLA: 1022.9054384145393,
-  AMZN: 560.8868971120006,
-  GOOG: 39.01386533078053,
-  NVDA: 127.94287310162221
-}
-
-Transactions per second: 70142.47150569885, here are the curret shares:
-{
-  NFLX: 224.0494447452168,
-  TSLA: 930.0257595240352,
-  AMZN: 390.7555392111635,
-  GOOG: 119.73092859061563,
-  NVDA: 211.4590822967352
-}
-
-Transactions per second: 64547.43576926922, here are the curret shares:
-{
-  NFLX: 199.38162742102753,
-  TSLA: 1243.7519691091143,
-  AMZN: 219.98226822017372,
-  GOOG: 86.10292130285285,
-  NVDA: 212.1739601913941
-}
+clients: 200, tx/second: 14370
+clients: 200, tx/second: 14455
+clients: 200, tx/second: 15585
+clients: 200, tx/second: 14836.418209104551
+clients: 200, tx/second: 15843.078460769617
+clients: 800, tx/second: 77924.0379810095
+clients: 800, tx/second: 73444.77761119441
+clients: 800, tx/second: 74230.5
+clients: 800, tx/second: 75061.93806193805
+clients: 800, tx/second: 73322.5162256615
+clients: 957, tx/second: 72438 // add more clients at this second
+clients: 1000, tx/second: 79902.5974025974
+clients: 1000, tx/second: 87271.95608782435
+clients: 1000, tx/second: 83435.94836146971
+clients: 1000, tx/second: 88965.55167249126
+clients: 1000, tx/second: 90353.82308845577
+clients: 1200, tx/second: 97116.34756995582
+clients: 1200, tx/second: 103316.86626746507
+clients: 1200, tx/second: 99527.65321375187
+clients: 1200, tx/second: 100461.95922426652
+clients: 1200, tx/second: 93544.41117764471
+clients: 1200, tx/second: 100236.5165759525
+clients: 1202, tx/second: 93156.92153923039
+clients: 1222, tx/second: 95659
+clients: 1237, tx/second: 93074.8502994012
+clients: 1261, tx/second: 94069.56521739131
+clients: 1312, tx/second: 99765.61719140431
+clients: 1368, tx/second: 97868.63136863135
+clients: 1450, tx/second: 100146.47467725918
+clients: 1524, tx/second: 99494.26433915213
+clients: 1558, tx/second: 97112.14953271029
+clients: 1563, tx/second: 109997.01492537312
+clients: 1566, tx/second: 103800.1808318264
+clients: 1567, tx/second: 108891.80902321507
+clients: 1569, tx/second: 105133.66336633664
+clients: 1570, tx/second: 106190.92872570195
+clients: 1571, tx/second: 104024.52316076294
+clients: 1572, tx/second: 110514.38240270727
+clients: 1573, tx/second: 103524.01331431288
+clients: 1573, tx/second: 108890.29535864979
+clients: 1574, tx/second: 106147.56097560975
+clients: 1575, tx/second: 108739.79213066073
+clients: 1575, tx/second: 104334.34343434343
+clients: 1576, tx/second: 108182.79901356349
+clients: 1576, tx/second: 98393.45887016847
+clients: 1577, tx/second: 108777.45383867834
+clients: 1577, tx/second: 97900.80885483183
+clients: 1577, tx/second: 105977.8963414634
+clients: 1578, tx/second: 105430.28758645795
+clients: 1578, tx/second: 110480.88235294117
+clients: 1578, tx/second: 104346.80706521739
+clients: 1579, tx/second: 108727.79081461615
+clients: 1579, tx/second: 103096.62261380322
+clients: 1579, tx/second: 96951.6775162744
+clients: 1580, tx/second: 93642.80125195617
+clients: 1580, tx/second: 92114.94928707923
+clients: 1580, tx/second: 94232.14703816436
+clients: 1581, tx/second: 92839.09958833319  // dies here
 ```
 
 ### socket.io
 
 **die after 20s**
+node cpu: >120%
 
 ```
-Transactions per second: 3160.2962255136167, here are the curret shares:
-{
-  NFLX: 291.1087571528243,
-  TSLA: 244.74,
-  AMZN: 1788.6559198253308,
-  GOOG: 1187.1239999812924,
-  NVDA: 174.6441644522588
-}
-
-Transactions per second: 2765.8108500145054, here are the curret shares:
-{
-  NFLX: 266.70212617623343,
-  TSLA: 244.74,
-  AMZN: 1886.6456659331966,
-  GOOG: 1463.9000516492076,
-  NVDA: 169.91079195983414
-}
-
-Transactions per second: 4459.919839679359, here are the curret shares:
-{
-  NFLX: 279.7711420327037,
-  TSLA: 244.74,
-  AMZN: 1886.6456659331966,
-  GOOG: 1458.7379458036958,
-  NVDA: 172.04241585307955
-}
-
-node cpu: >120%
+Transactions per second: 3160.2962255136167
+Transactions per second: 2765.8108500145054
+Transactions per second: 4459.919839679359
 ```
 
 ### uwebsocket
@@ -102,99 +93,87 @@ node cpu: >120%
 node cpu: 100%
 
 ```
-Transactions per second: 7340, here are the curret shares:
-{
-  NFLX: 187.94536025799889,
-  TSLA: 220.0134946526879,
-  AMZN: 1749.0660218384803,
-  GOOG: 1688.5973105484613,
-  NVDA: 156.66073122908176
-}
+Transactions per second: 7340
 ```
 
 #### 2 terminals
 node cpu: 100%
 
 ```
-Transactions per second: 10720, here are the curret shares:
-{
-  NFLX: 138.2916936187233,
-  TSLA: 216.42452533864503,
-  AMZN: 1415.6048107890945,
-  GOOG: 1810.855182392591,
-  NVDA: 199.2807423671192
-}
-
-Transactions per second: 8712.28771228771, here are the curret shares:
-{
-  NFLX: 134.77377978096976,
-  TSLA: 211.10800308317812,
-  AMZN: 1506.3377720439512,
-  GOOG: 1903.744481874943,
-  NVDA: 189.77621833208994
-}
-
-Transactions per second: 7911.08891108891, here are the curret shares:
-{
-  NFLX: 146.33875807939432,
-  TSLA: 203.88943339334205,
-  AMZN: 1549.454444575022,
-  GOOG: 1954.0658149383273,
-  NVDA: 179.2964463232948
-}
+Transactions per second: 10720
+Transactions per second: 8712.28771228771
+Transactions per second: 7911.08891108891
 ```
 
-### Vert.X
-
-**Each terminal can only open up to 190 connections**
+### Vert.X v3.9.2
 
 ```
-//terminal #1:
-187 started
-188 started
-189 started
-190 started
-191 started
-191 failed to conenct
-We did not expect any client to disconnect, exiting!
-90 connected
-67 connected
-47 connected
-102 connected
+clients: 200, tx/second: 16224.550898203592
+clients: 200, tx/second: 15539.650872817954
+clients: 200, tx/second: 16038.902743142145
+clients: 200, tx/second: 16152.847152847151
+clients: 200, tx/second: 16463.5
+clients: 200, tx/second: 16285.785536159601
+clients: 200, tx/second: 16387.225548902195
+clients: 200, tx/second: 16219.171243135295
+clients: 400, tx/second: 18999.5
+clients: 400, tx/second: 34268.0
+clients: 400, tx/second: 32361.77644710579
+clients: 400, tx/second: 34642.17891054473
+clients: 400, tx/second: 33277.5
+clients: 400, tx/second: 33988.52867830424
+clients: 400, tx/second: 33036.92614770459
+clients: 600, tx/second: 40352.14785214785
+clients: 600, tx/second: 53783.71628371628
+clients: 600, tx/second: 55876.5
+clients: 600, tx/second: 53210.5
+clients: 600, tx/second: 51557.442557442555
+clients: 600, tx/second: 46776.611694152925
+clients: 800, tx/second: 49423.364952571144
+clients: 800, tx/second: 71616.95760598504
+clients: 800, tx/second: 68486.0
+clients: 800, tx/second: 71874.5
+clients: 800, tx/second: 75668.16367265469
+clients: 800, tx/second: 75509.99000999001
+clients: 800, tx/second: 75064.43556443557
+clients: 800, tx/second: 74875.31172069824
+clients: 800, tx/second: 75397.20558882235
+clients: 800, tx/second: 73899.2015968064
+clients: 800, tx/second: 71554.44555444556
+clients: 800, tx/second: 73185.12974051895
+clients: 800, tx/second: 67642.39401496259
+clients: 800, tx/second: 53806.78981527709
+clients: 1000, tx/second: 71205.79420579421
+clients: 1000, tx/second: 86232.03592814371
+clients: 1000, tx/second: 88658.35411471322
+clients: 1000, tx/second: 82250.74925074926
+clients: 1000, tx/second: 91653.86533665836
+clients: 1000, tx/second: 91234.26573426573
+clients: 1000, tx/second: 90478.80299251871
+clients: 1000, tx/second: 77575.3493013972
+clients: 1000, tx/second: 93541.41716566867
+clients: 1000, tx/second: 91055.44455544456
+clients: 1000, tx/second: 62859.64035964036
+clients: 1000, tx/second: 85215.60780390195
+clients: 1000, tx/second: 64566.0
+clients: 1000, tx/second: 56672.32767232767
+clients: 1000, tx/second: 70428.8567149276
+clients: 1200, tx/second: 71587.61857214179
+clients: 1200, tx/second: 79889.66550174737
+clients: 1200, tx/second: 91149.0
+clients: 1200, tx/second: 56061.0
+clients: 1200, tx/second: 71107.44627686156
+clients: 1200, tx/second: 84885.0
+clients: 1200, tx/second: 91387.30634682659
+clients: 1200, tx/second: 82824.26360459311
+clients: 1200, tx/second: 28857.571214392803
+clients: 1200, tx/second: 0.0 // all connections drop
+clients: 1200, tx/second: 0.0
+clients: 1200, tx/second: 0.0
+clients: 1200, tx/second: 0.0
+clients: 1200, tx/second: 0.0
+clients: 1200, tx/second: 0.0
+clients: 1200, tx/second: 0.0 // my computer dies
+
 ```
 
-#### 1 terminal 
-
-```
-transactions: 15499 req/s
-transactions: 15097 req/s
-transactions: 14833 req/s
-transactions: 15798 req/s
-transactions: 14953 req/s
-```
-
-#### 2 instnaces
-
-Make my mac died every time...
-
-```
-transactions: 16213 req/s
-transactions: 15717 req/s
-transactions: 15582 req/s
-transactions: 10231 req/s
-transactions: 38092 req/s
-transactions: 13396 req/s
-transactions: 0 req/s
-transactions: 0 req/s
-```
-
-```
-// from terminal log
-java.lang.NoClassDefFoundError: Could not initialize class java.time.zone.ZoneRulesProvider
-	at java.base/java.time.ZoneRegion.ofId(ZoneRegion.java:120)
-	at java.base/java.time.ZoneId.of(ZoneId.java:408)
-	....
-Exception in thread "main" java.lang.IllegalStateException: failed to create a child event loop
-	at io.netty.util.concurrent.MultithreadEventExecutorGroup.<init>(MultithreadEventExecutorGroup.java:88)
-	at io.netty.util.concurrent.MultithreadEventExecutorGroup.<init>(MultithreadEventExecutorGroup.java:58)
-```

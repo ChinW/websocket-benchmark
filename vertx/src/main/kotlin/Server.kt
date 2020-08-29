@@ -16,6 +16,7 @@ var shares: MutableMap<String, Double> = mutableMapOf(
 )
 
 var transPerSecond = 0
+var clients = 0
 
 class Server : AbstractVerticle() {
     override fun start() {
@@ -23,6 +24,7 @@ class Server : AbstractVerticle() {
             .createHttpServer()
             .webSocketHandler { ws: ServerWebSocket ->
                 run {
+                    clients++
                     ws.handler { data: Buffer? ->
                         run {
                             val payload = Json.decodeFromString<Payload>(data.toString())
@@ -69,9 +71,13 @@ class Server : AbstractVerticle() {
 
 fun main(args: Array<String>) =  runBlocking<Unit>  {
     Vertx.vertx().deployVerticle(Server())
+    var lastTime = System.currentTimeMillis()
     launch {
         while(true) {
-            println("transactions: ${transPerSecond/2} req/s")
+            println("clients: ${clients}, tx/second: ${
+                transPerSecond.toDouble() / (System.currentTimeMillis() - lastTime).toDouble() * 1000
+            }")
+            lastTime = System.currentTimeMillis()
             transPerSecond = 0
             delay(2000)
         }
