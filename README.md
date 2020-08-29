@@ -13,6 +13,12 @@ Intel Iris Plus Graphics 1536 MB
 - 10% clients are sending req per 1ms, i.e. if there are 200 clients connected, 20 clients are sending reqs per ms
 - log per 2 seconds
 
+# To Run
+
+For vertx2: `vertx run Server -cp "classes:vertx2-1.0-SNAPSHOT.jar" `
+
+# Resutls
+
 ### ws
 
 client nodes cpu: ~30%

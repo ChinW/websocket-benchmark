@@ -36,7 +36,6 @@ class Server : AbstractVerticle() {
                                     )))
                                 }
                                 "buy" -> {
-                                    transPerSecond ++
                                     val share = shares.get(payload.shareName)
                                     if ( share != null) {
                                         shares.put(payload.shareName, share * 1.001)
@@ -46,9 +45,9 @@ class Server : AbstractVerticle() {
                                         "return",
                                         price = shares.get(payload.shareName)!!
                                     )))
+                                    transPerSecond ++
                                 }
                                 "sell" -> {
-                                    transPerSecond ++
                                     val share = shares.get(payload.shareName)
                                     if ( share != null) {
                                         shares.put(payload.shareName, share * 0.999)
@@ -58,6 +57,7 @@ class Server : AbstractVerticle() {
                                         "return",
                                         price = shares.get(payload.shareName)!!
                                     )))
+                                    transPerSecond ++
                                 }
                             }
                             ws.writeBinaryMessage(data)
