@@ -7,14 +7,6 @@ import kotlinx.serialization.json.*
 import kotlinx.serialization.*
 import kotlin.system.exitProcess
 
-@Serializable
-data class Payload(
-    var action: String,
-    var share: String = "",
-    var price: Double = 0.0,
-    var channel: String = ""
-)
-
 var numClients = 200;
 var tradersFraction = 0.1;
 

@@ -4,7 +4,7 @@
   "description": "This repo implements a simplified stock exchange service using pub/sub support found in Socket.IO and uWebSockets.js. The purpose is to showcase performance differences in the two projects given a real-world example under stressful conditions.",
   "main": "uWebSockets.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "node --max_semi_space_size=64 --max-old-space-size=4096 ./ws/server.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,8 @@
   "optionalDependencies": {
     "bufferutil": "^4.0.1",
     "utf-8-validate": "^5.0.2"
+  },
+  "devDependencies": {
+    "lodash": "^4.17.20"
   }
 }
