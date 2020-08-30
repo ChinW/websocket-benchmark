@@ -28,39 +28,11 @@ clients: 0, tx/second: 0
 clients: 152, tx/second: 0
 clients: 200, tx/second: 14076.5
 clients: 200, tx/second: 14472.763618190906
-clients: 200, tx/second: 14218.609304652326
-clients: 200, tx/second: 14488
-clients: 200, tx/second: 13460
-clients: 200, tx/second: 13880
-clients: 200, tx/second: 13656.828414207102
-clients: 200, tx/second: 14122.938530734633
-clients: 200, tx/second: 13430
-clients: 200, tx/second: 13560
-clients: 200, tx/second: 13876.938469234616
-clients: 200, tx/second: 13503.748125937032
-clients: 200, tx/second: 13687.343671835917
-clients: 200, tx/second: 13536.268134067033
-clients: 200, tx/second: 13769
-clients: 200, tx/second: 13490.5
-clients: 200, tx/second: 13700
-clients: 200, tx/second: 14011
-clients: 200, tx/second: 14176.08804402201
-clients: 200, tx/second: 14081
-clients: 200, tx/second: 13422.288855572215
 clients: 200, tx/second: 13500
 clients: 400, tx/second: 17177.5
-clients: 400, tx/second: 29140.5
-clients: 400, tx/second: 28288.5
-clients: 400, tx/second: 28259.5
-clients: 400, tx/second: 28322
 clients: 400, tx/second: 28439.5
-clients: 400, tx/second: 28578.5
-clients: 400, tx/second: 28751.5
 clients: 600, tx/second: 35955.5
 clients: 600, tx/second: 43202.3988005997
-clients: 600, tx/second: 42002
-clients: 600, tx/second: 43076
-clients: 600, tx/second: 42820.5
 clients: 600, tx/second: 43987.5
 clients: 600, tx/second: 44540.5
 clients: 800, tx/second: 66640.17991004499
@@ -119,6 +91,13 @@ clients: 1580, tx/second: 93642.80125195617
 clients: 1580, tx/second: 92114.94928707923
 clients: 1580, tx/second: 94232.14703816436
 clients: 1581, tx/second: 92839.09958833319  // dies here
+```
+
+Latency:
+```
+avg latency: 3.6414892578125 ms
+avg latency: 3.87604462890625 ms
+avg latency: 3.7781111572265624 ms
 ```
 
 ### socket.io
@@ -293,4 +272,11 @@ clients: 601, tx/second: 52763.5
 clients: 601, tx/second: 55434.0
 clients: 601, tx/second: 27662.0
 clients: 601, tx/second: 35759.62018990505
+```
+
+Latency:
+```
+avg latency: 84.5121814720979 ms
+avg latency: 84.23259073604895 ms
+avg latency: 80.34779536802446 ms
 ```
