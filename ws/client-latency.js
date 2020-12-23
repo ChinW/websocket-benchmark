@@ -11,8 +11,6 @@ function establishConnections(clientIndex) {
     return;
   }
 
-  let value;
-
   const ws = new WebSocket("ws://localhost:8080");
   ws.on("open", () => {
     establishConnections(clientIndex - 1);

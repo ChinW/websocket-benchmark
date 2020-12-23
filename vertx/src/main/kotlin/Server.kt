@@ -21,7 +21,7 @@ var clients = 0
 class Server : AbstractVerticle() {
 
     suspend fun messageTest(ws: ServerWebSocket, ms: Long) {
-        val share = SHARE_NAMES[(Math.random() * sharesharess.size).toInt()]
+        val share = SHARE_NAMES[(Math.random() * shares.size).toInt()]
         while (true) {
             if (Math.random() < 0.5) {
                 shares.put(share, shares[share]!! * 1.001)

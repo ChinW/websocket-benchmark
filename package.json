@@ -1,8 +1,7 @@
 {
   "name": "pubsub-benchmark",
   "version": "1.0.0",
-  "description": "This repo implements a simplified stock exchange service using pub/sub support found in Socket.IO and uWebSockets.js. The purpose is to showcase performance differences in the two projects given a real-world example under stressful conditions.",
-  "main": "uWebSockets.js",
+  "description": "weboscket benchmark",
   "scripts": {
     "server": "node --max_semi_space_size=64 --max-old-space-size=4096 ./ws/server.js"
   },
@@ -12,11 +11,9 @@
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/uNetworking/pubsub-benchmark/issues"
-  },
-  "homepage": "https://github.com/uNetworking/pubsub-benchmark#readme",
   "dependencies": {
+    "apollo-cache-inmemory": "^1.6.6",
+    "react": "^16.13.1",
     "socket.io": "^2.3.0",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v18.3.0",
     "ws": "^7.3.1"
@@ -26,6 +23,11 @@
     "utf-8-validate": "^5.0.2"
   },
   "devDependencies": {
-    "lodash": "^4.17.20"
+    "@apollo/client": "^3.2.4",
+    "apollo-client": "^2.6.10",
+    "apollo-server": "^2.18.2",
+    "graphql": "^15.3.0",
+    "lodash": "^4.17.20",
+    "subscriptions-transport-ws": "^0.9.18"
   }
 }
